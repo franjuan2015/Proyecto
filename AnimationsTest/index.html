@@ -39,7 +39,7 @@
   <body>      
       <div class="container" ng-controller="animationsTestAppController as appCtrl" style="width: 896px; height: 504px; position: absolute; border: 1px solid black">
           <!-- MENU CONTAINER -->
-          <div class="row" ng-show="appCtrl.menuIsOn" ng-init="appCtrl.loadGameData()">
+          <div class="row" ng-show="menuIsOn" ng-init="appCtrl.loadGameData()">
               <div class="col-xs-12" style="width: 896; height: 504; position: absolute">
                   <!-- title -->
                   <div class="row">
@@ -56,24 +56,24 @@
                       <!-- pick player robot -->
                       <div class="col-xs-2">
                           <h5>Choose a robot</h5>
-                          <select id="playerRobotSelect" ng-model="appCtrl.selectedPlayerRobot" 
+                          <select id="playerRobotSelect" ng-model="selectedPlayerRobot" 
                                 ng-options="robots.name for robots in appCtrl.robotTypesArray track by robots.id">
                           </select>
                       </div>
                       <!-- player thumbnail -->
                       <div class="col-xs-2" style="margin-left: -20px">
-                          <img alt="" src="" ng-src="{{appCtrl.selectedPlayerRobot.thumbnailPath}}"/>
+                          <img alt="" src="" ng-src="{{selectedPlayerRobot.thumbnailPath}}"/>
                       </div>
                       <!-- pick enemy robot -->
                       <div class="col-xs-2">
                           <h5>Choose an enemy</h5>
-                          <select id="enemyRobotSelect" ng-model="appCtrl.selectedEnemyRobot" 
+                          <select id="enemyRobotSelect" ng-model="selectedEnemyRobot" 
                                 ng-options="enemies.name for enemies in appCtrl.robotTypesArray track by enemies.id">
                           </select>                          
                       </div>
                       <!-- enemy thumbnail -->
                       <div class="col-xs-2" style="margin-left: -20px">
-                          <img alt="" src="" ng-src="{{appCtrl.selectedEnemyRobot.thumbnailPath}}"/>
+                          <img alt="" src="" ng-src="{{selectedEnemyRobot.thumbnailPath}}"/>
                       </div>
                       <!-- pick scenario -->
                       <div class="col-xs-2">
@@ -93,41 +93,41 @@
               </div>
           </div>
           <!-- GAME CONTAINER -->
-          <div class="row" ng-hide="appCtrl.menuIsOn">
+          <div class="row" ng-hide="menuIsOn">
               <!-- background container -->
               <div class="col-xs-12" style="width: 896; height: 504; position: absolute; z-index: 0">                  
                   <img alt="" src="" ng-src="{{appCtrl.selectedScenario.path}}"/>
               </div>
               <!-- player container -->
               <div class="col-xs-12" style="width: 896; height: 504; position: absolute; z-index: 2">                  
-                  <img alt="" src="" id="playerContainer"/>
+                  <img alt="" src="" ng-src="{{currentPlayerFrame}}"/>
               </div>
               <!-- enemy container -->
               <div class="col-xs-12" style="width: 896; height: 504; position: absolute; z-index: 1">                  
-                  <img alt="" src="" id="enemyContainer" class="horizontalFlip"/>
+                  <img alt="" src="" class="horizontalFlip" ng-src="{{currentEnemyFrame}}"/>
               </div>
               <!-- buttons container -->
               <div class="col-xs-12" style="width: 896; height: 504; position: absolute; z-index: 3">                  
                   <div class="row" style="margin-top: 5px; margin-left: 5px">
                       <div class="col-xs-12">
                           <div class="btn-group">
-                            <button class="btn btn-default menuButton" id="attack1Button">Attack 1</button>
-                            <button class="btn btn-default menuButton" id="attack2Button">Attack 2</button>
-                            <button class="btn btn-default menuButton" id="attack3Button">Attack 3</button>
-                            <button class="btn btn-default menuButton" id="attack4Button">Attack 4</button>
-                            <button class="btn btn-default menuButton" id="attack5Button">Attack 5</button>
-                            <button class="btn btn-default menuButton" id="attack6Button">Attack 6</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('attack1')">Attack 1</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('attack2')">Attack 2</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('attack3')">Attack 3</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('attack4')">Attack 4</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('attack5')">Attack 5</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('attack6')">Attack 6</button>
                           </div>
                       </div>
                   </div>
                   <div class="row" style="margin-top: 5px; margin-left: 5px">
                       <div class="col-xs-12">
                           <div class="btn-group">
-                            <button class="btn btn-default menuButton" id="attack1Button">Hit 1</button>
-                            <button class="btn btn-default menuButton" id="attack2Button">Hit 2</button>
-                            <button class="btn btn-default menuButton" id="attack3Button">Hit 3</button>
-                            <button class="btn btn-default menuButton" id="attack4Button">Ultimate</button>
-                            <button class="btn btn-default menuButton" id="attack5Button">Die</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('hit1')">Hit 1</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('hit2')">Hit 2</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('hit3')">Hit 3</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('ultimate')">Ultimate</button>
+                            <button class="btn btn-default menuButton" ng-click="setPlayerAnim('die')">Die</button>
                           </div>
                       </div>
                   </div>       

@@ -13,31 +13,19 @@ this.enemyObj = function(robotName) {
         ];
         this.filePath = "images/mobot/";
     }
-    
-    this.playAnim = function(animationName) {
-        clearInterval(this.currentAnimationID);
-        var topFrame;
-        var filePath = this.filePath;
-        if (animationName === "die") {topFrame = 60;}
-        else if (animationName === "hit1") {topFrame = 25;}
-        else if (animationName === "hit2") {topFrame = 22;}
-        else if (animationName === "hit3") {topFrame = 24;}
-        else if (animationName === "idle") {topFrame = 60;}
-        var i = 1;
-        this.currentAnimationID = setInterval(function() {
-            $("#playerContainer").attr("src", filePath+animationName+"/"+animationName+" ("+i+").png");
-            i++;
-            if (i == topFrame && animationName === "idle") {
-                i = 1;
-            }else {
-                clearInterval(this.currentAnimationID);
-            }
-        }, 45);  
-        renewAnims();
-    };
-    function renewAnims() {
-        this.playAnim("idle");
-    };
+    this.images = [];
 };
+enemyObj.prototype.loadData = function() {
+    for (var i=0; i<this.topFrames.length; i++) {
+        var tmpArray = [];
+        for (var j=1; j<=this.topFrames[i][1]; j++) {
+            var image = new Image();
+            image.src = "images/mobot/"+this.topFrames[i][0]+"/"+this.topFrames[i][0]+" ("+j+").png";
+            tmpArray.push(image);
+        }
+        this.images.push(tmpArray);
+    }
+};
+
 
 
