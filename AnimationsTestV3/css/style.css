@@ -1,0 +1,28 @@
+html, body{
+    margin: auto;
+    background-color:#afd9ee;
+    height: 540px;
+    width: 896px;
+}
+.title{
+    text-align: left;
+}
+div{
+    margin-bottom: 30px;
+}
+.boton{
+    height: 50%;
+    width: 50%;
+}
+.generalWindowPosition{
+    position: absolute;
+}
+.enemyWindowPosition{
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
